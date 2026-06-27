@@ -8,28 +8,28 @@ import (
 
 func TestCommandProcessing(t *testing.T) {
 	tests := []struct {
-		name string
-		input string
+		name    string
+		input   string
 		wantCmd string
 	}{
 		{
-			name: "simaple command",
-			input: "ls\n",
+			name:    "simaple command",
+			input:   "ls\n",
 			wantCmd: "ls",
 		},
 		{
-			name: "command with argument",
-			input: "ls -la\n",
+			name:    "command with argument",
+			input:   "ls -la\n",
 			wantCmd: "ls -la",
 		},
 		{
-			name: "command with space",
-			input: "  ls  \n",
+			name:    "command with space",
+			input:   "  ls  \n",
 			wantCmd: "ls",
 		},
 		{
-			name: "empty command",
-			input: "\n",
+			name:    "empty command",
+			input:   "\n",
 			wantCmd: "",
 		},
 	}
@@ -62,7 +62,7 @@ func TestEOF(t *testing.T) {
 func BenchmarkCommandRead(b *testing.B) {
 	input := strings.Repeat("ls -la\n", 1000)
 	reader := bufio.NewReader(strings.NewReader(input))
-	
+
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		reader = bufio.NewReader(strings.NewReader(input))
